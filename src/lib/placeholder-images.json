@@ -1,0 +1,22 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-study",
+      "description": "Student studying with a laptop and books in a modern library",
+      "imageUrl": "https://picsum.photos/seed/uniflow1/1200/800",
+      "imageHint": "university study"
+    },
+    {
+      "id": "avatar-user",
+      "description": "User profile avatar",
+      "imageUrl": "https://picsum.photos/seed/user123/200/200",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "uniflow-about",
+      "description": "Dark academia study aesthetic with books, coffee, headphones, and a candle on a wooden desk",
+      "imageUrl": "https://picsum.photos/seed/uniflow-study-aesthetic/800/1000",
+      "imageHint": "study aesthetic"
+    }
+  ]
+}

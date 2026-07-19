@@ -1,0 +1,112 @@
+
+{
+  "entities": {
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Represents a user's profile information within the application.",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "firstName": { "type": "string" },
+        "lastName": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin", "super_admin"], "default": "user" },
+        "avatarUrl": { "type": "string", "format": "uri" },
+        "verified": { "type": "boolean", "default": false },
+        "accountStatus": { "type": "string", "enum": ["active", "pending_verification", "suspended", "blocked"], "default": "pending_verification" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "email", "createdAt", "updatedAt"]
+    },
+    "SystemLog": {
+      "title": "SystemLog",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["error", "info", "security", "ai"] },
+        "message": { "type": "string" },
+        "details": { "type": "object" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "GlobalSettings": {
+      "title": "GlobalSettings",
+      "type": "object",
+      "properties": {
+        "maintenanceMode": { "type": "boolean" },
+        "announcement": { "type": "string" },
+        "aiConfig": { "type": "object" }
+      }
+    },
+    "Chat": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Chat",
+      "type": "object",
+      "description": "Represents a conversation between two or more users.",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["private", "group", "community"] },
+        "participantIds": { "type": "array", "items": { "type": "string" } },
+        "adminIds": { "type": "array", "items": { "type": "string" } },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "lastMessage": {
+          "type": "object",
+          "properties": {
+            "text": { "type": "string" },
+            "senderId": { "type": "string" },
+            "timestamp": { "type": "string", "format": "date-time" }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "type", "participantIds", "createdAt", "updatedAt"]
+    },
+    "ChatMessage": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ChatMessage",
+      "type": "object",
+      "description": "An individual message within a chat.",
+      "properties": {
+        "id": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "text": { "type": "string" },
+        "type": { "type": "string", "enum": ["text", "image", "file"] },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "senderId", "text", "timestamp"]
+    }
+  },
+  "auth": {
+    "providers": ["password", "anonymous"]
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/backend/entities/UserProfile" },
+      "description": "User profiles."
+    },
+    "/system_logs": {
+      "schema": { "$ref": "#/backend/entities/SystemLog" },
+      "description": "Global system logs."
+    },
+    "/system_settings": {
+      "schema": { "$ref": "#/backend/entities/GlobalSettings" },
+      "description": "Global application configuration."
+    },
+    "/chats/{chatId}": {
+      "schema": { "$ref": "#/backend/entities/Chat" },
+      "description": "Shared chat metadata."
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": { "$ref": "#/backend/entities/ChatMessage" },
+      "description": "Messages in a chat."
+    },
+    "/system_ai_interactions": {
+      "schema": { "type": "object" },
+      "description": "Global log of AI interactions for monitoring."
+    }
+  }
+}
