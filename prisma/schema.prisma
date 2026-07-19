@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Example models derived from existing Firestore collections
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  tasks     Task[]
+  subjects  Subject[]
+  notes     Note[]
+  messages  Message[]
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Subject {
+  id        String   @id @default(cuid())
+  name      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  tasks     Task[]   // assuming tasks can be linked to subjects
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  content   String
+  sentAt    DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
