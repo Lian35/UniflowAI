@@ -1,69 +1,250 @@
-# UniFlow AI Pro — Ecosistema Académico Maestro
+<div align="center">
 
-**UniFlow AI Pro** es una terminal académica de alto rendimiento diseñada para centralizar y optimizar la vida universitaria mediante Inteligencia Artificial de vanguardia y una gestión estratégica de datos. Este sistema actúa como el "Cerebro Central" del estudiante, integrando planificación, tutoría y seguimiento en una sola interfaz premium.
+# 🎓 UniFlow AI Pro
 
-## 🎯 1. Propósito y Objetivo
-El objetivo primordial de UniFlow es resolver la fragmentación de la información universitaria. Los estudiantes suelen dispersar sus metas en calendarios físicos, chats grupales, cuadernos y archivos PDF. UniFlow consolida todo este flujo en un ecosistema inteligente que no solo almacena datos, sino que los **interpreta** para reducir la carga cognitiva y maximizar el rendimiento académico.
+### Intelligent Academic Management Platform powered by Artificial Intelligence
 
-### ¿Por qué lo creamos?
-Para el estudiante del "1% académico", aquel que entiende que la carrera es una gestión de recursos finitos (tiempo y energía). Lo creamos para transformar la experiencia universitaria de una gestión reactiva (apagar incendios antes de exámenes) a una **estrategia proactiva** guiada por IA.
+UniFlow AI Pro es una plataforma web diseñada para centralizar la gestión académica del estudiante mediante herramientas de planificación, organización, análisis de rendimiento e Inteligencia Artificial. El sistema integra en un único entorno la administración de materias, tareas, horarios, sesiones de estudio, notas personales y asistencia inteligente, permitiendo optimizar la productividad universitaria.
 
----
+**Next.js 15 • React 19 • Firebase • Firestore • Gemini AI**
 
-## 🚀 2. Arquitectura Técnica (Stack de Desarrollo)
-El ecosistema ha sido desarrollado con el estándar industrial más exigente para garantizar velocidad, seguridad y escalabilidad:
+[🌐 Demo](https://uniflowaiv2.netlify.app/)
 
-- **Frontend Maestro**: [Next.js 15](https://nextjs.org/) (App Router) + [React 19](https://react.dev/). Permite una navegación instantánea y componentes de servidor para un SEO y rendimiento óptimos.
-- **Identidad Visual**: [Tailwind CSS](https://tailwindcss.com/) + [ShadCN UI](https://ui.shadcn.com/). Diseño adaptativo con estética "Master Edition" (bordes redondeados, sombras profundas y paleta Aurora AI).
-- **Cerebro Artificial**: [Google Gemini v2.5 Flash](https://ai.google.dev/) mediante [Genkit](https://firebase.google.com/docs/genkit). Implementamos flujos de IA para:
-    - Tutoría STEM multimodal (Visión + Matemáticas).
-    - Síntesis de textos largos (Resumidor).
-    - Planificación dinámica de horarios.
-- **Backend & Cloud**: [Firebase Ecosystem](https://firebase.google.com/).
-    - **Authentication**: Gestión de identidad segura con verificación por correo (OTP).
-    - **Firestore**: Base de datos de alta velocidad en tiempo real.
-    - **App Hosting**: Infraestructura serverless de nueva generación.
+</div>
 
 ---
 
-## 📊 3. ¿Por qué usamos Firestore (NoSQL) en lugar de MySQL?
-Esta es una decisión de ingeniería fundamental para aplicaciones de IA moderna:
+# 📖 Descripción
 
-1.  **Agilidad de Datos AI**: Los "Contextos de Memoria" de la IA generan objetos JSON altamente variables. NoSQL nos permite evolucionar estas estructuras sin migraciones de tablas complejas, permitiendo que la IA aprenda y guarde información nueva del estudiante instantáneamente.
-2.  **Real-time Experience**: La mensajería y la agenda requieren actualizaciones en milisegundos. Firestore sincroniza el estado de la base de datos con la interfaz de forma nativa mediante WebSockets. En MySQL, esto requeriría capas adicionales (como Socket.io) aumentando la latencia.
-3.  **Capacidad Offline**: Gracias al caché inteligente del SDK de Firestore, el estudiante puede consultar su malla y tareas sin internet. Los cambios se sincronizan automáticamente al recuperar la señal.
-4.  **Escalabilidad Serverless**: Sin necesidad de administrar servidores de base de datos físicos, eliminando cuellos de botella durante picos de tráfico (semanas de parciales).
+La vida universitaria genera grandes cantidades de información distribuida entre calendarios, aplicaciones de mensajería, documentos, plataformas institucionales y notas personales. Esta fragmentación dificulta el seguimiento del progreso académico y aumenta la carga cognitiva del estudiante.
 
----
+UniFlow AI Pro propone una solución integral basada en Inteligencia Artificial capaz de centralizar toda la información académica dentro de un único ecosistema digital.
 
-## 📂 4. Estructura de la Base de Datos
-La información está organizada de forma jerárquica para maximizar la privacidad y el rendimiento:
+La plataforma permite administrar asignaturas, controlar créditos, organizar horarios, gestionar tareas, almacenar apuntes, realizar sesiones de estudio y utilizar un asistente inteligente capaz de responder consultas, resumir documentos y resolver problemas académicos.
 
-### Nivel 1: Usuarios (`/users/{userId}`)
-Contiene el perfil maestro, estado de verificación y preferencias de tema.
-- **Sub-colección `subjects`**: Almacena el nombre, créditos (ITI ACD/16), semestre y el array de horarios (día, aula, horas).
-- **Sub-colección `tasks`**: Gestión de entregas con prioridad, tipo (examen/tarea) y fecha de vencimiento.
-- **Sub-colección `notes`**: Base de conocimientos personal en formato markdown.
-- **Sub-colección `studySessions`**: Historial de bloques de enfoque (XP ganada, duración).
-- **Sub-colección `settings/ai_context`**: **La Memoria Persistente**. Almacena el último diagnóstico de la IA para que el sistema "conozca" la tendencia del estudiante.
-
-### Nivel 2: Comunicación (`/chats/{chatId}`)
-- **Metadatos**: Participantes, tipo de chat (estudio/privado).
-- **Sub-colección `messages`**: Flujo de mensajes con cifrado en tránsito.
-
-### Nivel 3: Telemetría y Sistema
-- **`/system_logs`**: Errores y eventos técnicos para el administrador.
-- **`/system_ai_interactions`**: Registro global de consultas a la IA para monitoreo de cuota y calidad de respuesta.
+El objetivo principal del proyecto es proporcionar una herramienta moderna, escalable y orientada a mejorar la organización y el rendimiento del estudiante universitario.
 
 ---
 
-## 🛠️ 5. Módulos Operativos
-- **Control de Malla**: Gestión estratégica de la carrera con cálculo automático de créditos según el estándar ITI.
-- **TutorIA Pro**: Asistente capaz de resolver ejercicios analizando imágenes o texto con formato KaTeX.
-- **Planificador Dinámico**: Motor que genera rutas de estudio basadas en hábitos personales.
-- **Deep Focus**: Bloques de concentración con analíticas de productividad.
-- **Mensajería**: Comunicación para grupos de estudio.
-- **Predictor de Impacto**: Detecta riesgos académicos antes de que ocurran.
+# ✨ Características principales
+
+## Gestión Académica
+
+- Administración completa de materias
+- Control de créditos académicos
+- Organización por semestres
+- Gestión de horarios
+- Visualización de la malla curricular
 
 ---
-© 2024 UniFlow Ecosystem • Diseñado para el 1% académico.
+
+## Organización Personal
+
+- Agenda inteligente
+- Gestión de tareas
+- Fechas límite
+- Recordatorios
+- Sistema de prioridades
+
+---
+
+## Inteligencia Artificial
+
+Integración con Google Gemini para ofrecer:
+
+- Tutor académico
+- Explicación paso a paso de ejercicios
+- Resumen automático de documentos
+- Interpretación de imágenes
+- Asistencia mediante lenguaje natural
+
+---
+
+## Productividad
+
+- Deep Focus
+- Registro de sesiones de estudio
+- Historial de productividad
+- Seguimiento del tiempo invertido
+
+---
+
+## Comunicación
+
+- Chats privados
+- Grupos de estudio
+- Mensajería en tiempo real
+
+---
+
+# 🏗 Arquitectura del Sistema
+
+```
+                        ┌────────────────────┐
+                        │     Frontend       │
+                        │ Next.js + React    │
+                        └─────────┬──────────┘
+                                  │
+                    Firebase Authentication
+                                  │
+                ┌─────────────────┴─────────────────┐
+                │                                   │
+          Cloud Firestore                    Gemini AI
+                │                                   │
+       Datos Académicos                   Tutor Inteligente
+                │                                   │
+                └───────────────┬───────────────────┘
+                                │
+                         Usuario Final
+```
+
+---
+
+# 🛠 Stack Tecnológico
+
+| Tecnología | Función |
+|------------|----------|
+| Next.js 15 | Framework Frontend |
+| React 19 | Componentes |
+| TypeScript | Tipado estático |
+| Tailwind CSS | Diseño responsivo |
+| ShadCN UI | Componentes UI |
+| Firebase Authentication | Autenticación |
+| Cloud Firestore | Base de datos |
+| Firebase Hosting | Despliegue |
+| Google Gemini 2.5 Flash | Inteligencia Artificial |
+| Genkit | Integración con IA |
+
+---
+
+# 🗄 Arquitectura de Base de Datos
+
+La plataforma utiliza **Cloud Firestore**, una base de datos NoSQL orientada a documentos, elegida por su capacidad de sincronización en tiempo real, escalabilidad automática y soporte offline.
+
+```
+users
+│
+├── profile
+├── subjects
+├── tasks
+├── notes
+├── studySessions
+└── settings
+      └── ai_context
+
+chats
+│
+└── messages
+
+system_logs
+
+system_ai_interactions
+```
+
+---
+
+# ¿Por qué Firestore?
+
+Se optó por Firestore debido a que la plataforma requiere sincronización inmediata entre dispositivos y almacenamiento flexible para la información generada por la Inteligencia Artificial.
+
+Las principales ventajas son:
+
+- Sincronización en tiempo real.
+- Soporte offline nativo.
+- Escalabilidad automática.
+- Almacenamiento flexible mediante documentos JSON.
+- Integración directa con Firebase Authentication.
+- Infraestructura completamente serverless.
+
+---
+
+# 📂 Estructura del Proyecto
+
+```
+app/
+components/
+contexts/
+firebase/
+hooks/
+lib/
+services/
+styles/
+types/
+public/
+```
+
+---
+
+# 📸 Capturas del Sistema
+
+<div align="center">
+
+<img src="https://github.com/user-attachments/assets/024a04cd-e5bf-4cb5-bf37-90dfcfe08cde" width="900">
+
+<br><br>
+
+<img src="https://github.com/user-attachments/assets/04b13b9c-4059-45e2-9219-42c45442b0a2" width="900">
+
+<br><br>
+
+<img src="https://github.com/user-attachments/assets/48670d32-b89c-4404-b52e-59d7d5ea52c9" width="900">
+
+<br><br>
+
+<img src="https://github.com/user-attachments/assets/1852855c-e688-4b02-b668-24ca0a861646" width="900">
+
+<br><br>
+
+<img src="https://github.com/user-attachments/assets/b673a242-f45e-4348-adde-8154708e991e" width="900">
+
+<br><br>
+
+<img src="https://github.com/user-attachments/assets/29c25097-9268-426b-933c-1d8cc2cdf9e1" width="900">
+
+</div>
+
+---
+
+# 🚀 Principales Módulos
+
+| Módulo | Descripción |
+|---------|-------------|
+| Dashboard | Panel principal con resumen académico |
+| Subjects | Gestión de materias |
+| Tasks | Administración de tareas |
+| Schedule | Horarios |
+| Tutor AI | Asistente inteligente |
+| Notes | Apuntes personales |
+| Deep Focus | Sesiones de estudio |
+| Chat | Comunicación entre estudiantes |
+| Analytics | Seguimiento del rendimiento |
+
+---
+
+# 🌐 Demo
+
+### https://uniflowaiv2.netlify.app/
+
+---
+
+# 👨‍💻 Autor
+
+**Ronald Elian Hurtado Jama**
+
+Estudiante de Ingeniería en Tecnologías de la Información.
+
+---
+
+# 📄 Licencia
+
+Este proyecto fue desarrollado con fines educativos y como demostración de una plataforma moderna para la gestión académica mediante Inteligencia Artificial.
+
+---
+
+<div align="center">
+
+### UniFlow AI Pro
+
+**Smart Learning • Smart Planning • Smart Future**
+
+</div>
