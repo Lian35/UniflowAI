@@ -8,7 +8,7 @@ UniFlow AI Pro es una plataforma web diseñada para centralizar la gestión acad
 
 **Next.js 15 • React 19 • Firebase • Firestore • Gemini AI**
 
-[🌐 Demo](https://uniflowaiv2.netlify.app/)
+[🌐 UNIFLOWIA](https://uniflowaiv2.netlify.app/)
 
 </div>
 
