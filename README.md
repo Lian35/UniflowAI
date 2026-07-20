@@ -219,11 +219,6 @@ public/
 | Chat | Comunicación entre estudiantes |
 | Analytics | Seguimiento del rendimiento |
 
----
-
-# 🌐 Demo
-
-### https://uniflowaiv2.netlify.app/
 
 ---
 
